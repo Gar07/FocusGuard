@@ -5,12 +5,15 @@
 **Dual-Engine Hardware-Aware Focus Timer & Desk-Sentry Anti-Theft Utility**  
 *Aplikasi Mobile Native Berbasis Sensor Fisik Perangkat Keras untuk Produktivitas & Keamanan Meja Belajar Mahasiswa*
 
+[![GitHub Release](https://img.shields.io/github/v/release/Gar07/FocusGuard?style=for-the-badge&logo=github&color=3DDC84)](https://github.com/Gar07/FocusGuard/releases)
+[![Android CI](https://img.shields.io/github/actions/workflow/status/Gar07/FocusGuard/android-ci.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/Gar07/FocusGuard/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android%20Native-3DDC84.svg?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
 [![Language](https://img.shields.io/badge/Language-100%25%20Java-ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
 [![Min SDK](https://img.shields.io/badge/Min%20SDK-21%20(Lollipop)-007ACC.svg?style=for-the-badge)](https://developer.android.com/about/dashboards)
 [![Target SDK](https://img.shields.io/badge/Target%20SDK-35%20(Android%2015)-blue.svg?style=for-the-badge)](https://developer.android.com/)
 [![Dependencies](https://img.shields.io/badge/Dependencies-0%25%203rd--Party-10B981.svg?style=for-the-badge)](https://github.com/Gar07/FocusGuard)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=for-the-badge)](https://github.com/Gar07/FocusGuard)
+[![Dependabot](https://img.shields.io/badge/Dependabot-Active-02569B.svg?style=for-the-badge&logo=dependabot&logoColor=white)](.github/dependabot.yml)
 
 <br/>
 
@@ -20,10 +23,11 @@
 
 ---
 
-## 📌 Dokumen Publik & Presentasi Proyek
+## 📌 Dokumen Publik, Rilis & Presentasi Proyek
 
 | Jenis Dokumen | Format / Platform | Akses Langsung |
 | :--- | :--- | :--- |
+| **Official GitHub Release (v1.0.0)** | GitHub Release Page | [Buka Rilis v1.0.0](https://github.com/Gar07/FocusGuard/releases/tag/v1.0.0) |
 | **Product Requirements Document (PRD)** | Google Docs (Live Cloud) | [Buka di Google Docs](https://docs.google.com/document/d/1t3Hd_1S1vkxu7yhWYbjRagOk1BW-0kDKUo4mkP3NMNA/edit) |
 | **Panduan & Cetak Biru Proyek** | Dokumen PDF Resmi | [`docs/Panduan_Project_FocusGuard.pdf`](docs/Panduan_Project_FocusGuard.pdf) |
 | **Slide Presentasi Proyek (UTS)** | Google Slides (Live Cloud) | [Buka di Google Slides](https://docs.google.com/presentation/d/1lnWGwD6V7e9I7YBV9gm05HLmRkATpytsocBdceVv4s8/edit) |
@@ -131,7 +135,7 @@ CREATE TABLE sentry_incident_logs (
 
 ## 📱 4. Galeri Antarmuka & Tangkapan Layar (Screenshots)
 
-Berikut adalah dokumentasi tampilan antarmuka riil FocusGuard yang dijalankan pada Android Emulator:
+Dokumentasi tangkapan layar riil FocusGuard yang dijalankan pada Android Emulator:
 
 | 1. Beranda (Mode Fokus) | 2. Sesi: Menunggu Flip | 3. Sesi Fokus Aktif |
 | :---: | :---: | :---: |
@@ -216,45 +220,29 @@ Untuk menunjukkan keunggulan teknis aplikasi saat sesi penilaian di depan dosen 
 
 ---
 
-## 📂 7. Struktur Direktori Proyek
+## 🤖 7. Otomasi CI/CD & Dependabot
 
-```
-FocusGuard/
-├── app/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/example/focusguard/
-│   │   │   │   ├── MainActivity.java            # Beranda & pemilihan engine operasi
-│   │   │   │   ├── ActiveSessionActivity.java   # State machine fokus & sentry alarm
-│   │   │   │   ├── HistoryActivity.java         # Tampilan 2 tab riwayat data SQLite
-│   │   │   │   ├── sensor/
-│   │   │   │   │   └── SensorController.java    # Pemrosesan akselerometer & proximity
-│   │   │   │   ├── database/
-│   │   │   │   │   └── FocusGuardDBHelper.java  # OpenHelper 3 tabel relasional SQLite
-│   │   │   │   ├── util/
-│   │   │   │   │   ├── AlarmAlertManager.java   # Pengendali sirine & getaran haptik
-│   │   │   │   │   └── PreferenceManager.java   # Pengelola PIN & konfigurasi preferensi
-│   │   │   │   └── adapter/
-│   │   │   │       └── HistoryAdapter.java      # RecyclerView Adapter riwayat log
-│   │   │   ├── res/
-│   │   │   │   ├── layout/                      # Desain XML antarmuka & custom keypad
-│   │   │   │   ├── values/                      # colors.xml, strings.xml, themes.xml
-│   │   │   │   ├── drawable/                    # Cyber obsidian vector shapes & icons
-│   │   │   │   └── mipmap-*/                    # Ikon aplikasi resolusi mdpi s/d xxxhdpi
-│   │   │   └── AndroidManifest.xml              # Izin getar & deklarasi hardware sensor
-│   │   └── test/java/com/example/focusguard/
-│   │       └── FocusGuardUnitTest.java          # Pengujian unit matematika sensor & PIN
-│   ├── build.gradle.kts
-│   └── proguard-rules.pro
-├── assets/                                      # Banner, ikon 512px, diagram, & screenshots
-├── docs/                                        # PRD (PDF & MD) dan Slide Presentasi (PDF)
-├── releases/                                    # File APK siap pasang FocusGuard-v1.0.0.apk
-├── build.gradle.kts
-├── settings.gradle.kts
-└── README.md
-```
+Repository ini dilengkapi dengan sistem otomatisasi kelas industri:
+* **GitHub Actions CI ([`.github/workflows/android-ci.yml`](.github/workflows/android-ci.yml)):** Menjalankan kompilasi Gradle otomatis, eksekusi unit test mandiri, dan pengunggahan artefak APK pada setiap push dan Pull Request ke branch `main`.
+* **Dependabot ([`.github/dependabot.yml`](.github/dependabot.yml)):** Memindai dan memperbarui dependensi Gradle wrapper, Android Gradle Plugin (AGP), serta GitHub Actions secara otomatis setiap hari Senin.
 
 ---
 
-## 📄 Lisensi
-Proyek ini dikembangkan di bawah lisensi **MIT License** untuk keperluan akademik dan evaluasi Ujian Tengah Semester (UTS) mata kuliah Pemrograman Mobile.
+## 🤝 8. Panduan Kontribusi & Komunitas
+
+Kami menyambut kontribusi dari komunitas! Silakan baca panduan berikut sebelum berkontribusi:
+* **[Panduan Kontribusi (CONTRIBUTING.md)](CONTRIBUTING.md)**: Tata cara pengajuan kode, konvensi commit, dan aturan tanpa pustaka luar.
+* **[Pedoman Perilaku (CODE_OF_CONDUCT.md)](CODE_OF_CONDUCT.md)**: Standar komunikasi yang santun dan profesional.
+* **[Kebijakan Keamanan (SECURITY.md)](SECURITY.md)**: Cara melaporkan temuan kerentanan keamanan secara rahasia.
+
+---
+
+## 📄 9. Lisensi & Kredit Pembuat (Attribution)
+
+Proyek ini dilisensikan di bawah **[MIT License](LICENSE)**.
+
+> **Ketentuan Kredit Wajib:**  
+> Anda diizinkan untuk menyalin, memodifikasi, memperbarui, mencabangkan (*fork*), serta mendistribusikan perangkat lunak ini secara bebas, **dengan syarat tetap menyertakan hak cipta dan kredit asli kepada pembuat proyek** pada setiap salinan atau bagian substansial dari kode sumber:
+>
+> **Copyright (c) 2026 Gar07 (GPM Pasca)**  
+> **Original Repository:** [https://github.com/Gar07/FocusGuard](https://github.com/Gar07/FocusGuard)
