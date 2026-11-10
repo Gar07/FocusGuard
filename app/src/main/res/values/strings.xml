@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FocusGuard</string>
+    <string name="app_tagline">Dual-Engine Hardware Focus &amp; Anti-Theft Utility</string>
+    <string name="mode_focus_title">Flip-to-Focus Engine</string>
+    <string name="mode_focus_desc">Telungkupkan ponsel di meja untuk memulai timer belajar bebas distraksi dengan deteksi orientasi 3D.</string>
+    <string name="mode_sentry_title">Desk-Sentry Alarm</string>
+    <string name="mode_sentry_desc">Amankan ponsel di meja publik dengan deteksi getaran akselerometer &amp; kunci sirine ber-PIN 4 digit.</string>
+    <string name="btn_start_focus">MULAI SESI FOKUS</string>
+    <string name="btn_start_sentry">AKTIFKAN SENTRY ALARM</string>
+    <string name="btn_history">RIWAYAT &amp; ANALITIK</string>
+    <string name="btn_settings_pin">Pengaturan PIN &amp; Sensor</string>
+</resources>

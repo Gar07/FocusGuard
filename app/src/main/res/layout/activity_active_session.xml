@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootSessionScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_obsidian"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/rootSessionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Top Status Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSessionModeBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_pill"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="FLIP-TO-FOCUS ENGINE"
+                android:textColor="@color/focus_primary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvScreenDimStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="OLED Hemat Daya: Standby"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnAbortSession"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_badge_pill"
+                android:paddingHorizontal="12dp"
+                android:text="Akhiri"
+                android:textAllCaps="false"
+                android:textColor="@color/alarm_crimson"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Central Status Orb -->
+        <LinearLayout
+            android:id="@+id/layoutCenterOrb"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_circle_focus"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvStateBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.08"
+                android:text="WAITING FLIP"
+                android:textColor="@color/focus_primary"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMainTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="6dp"
+                android:fontFamily="monospace"
+                android:text="25:00"
+                android:textColor="@color/text_primary"
+                android:textSize="44sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvOrbHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Balikkan HP menghadap meja"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Main Instruction Title & Subtitle -->
+        <TextView
+            android:id="@+id/tvStateTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="Telungkupkan Ponsel di Meja"
+            android:textColor="@color/text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvStateSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Timer otomatis berjalan saat layar menghadap ke bawah (Z ≤ -8.5 m/s²)."
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <ProgressBar
+            android:id="@+id/progressSession"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="14dp"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="@color/focus_primary" />
+
+        <!-- Session Metrics Strip -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvSessionTargetInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Target: 25 Menit"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvSessionDistractionCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distraksi Tercatat: 0x"
+                android:textColor="@color/sentry_primary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- PIN DISARM KEYPAD (Visible in Sentry ARMED / ALARM states) -->
+        <LinearLayout
+            android:id="@+id/cardPinDisarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_card_selected_sentry"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvPinPromptTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MASUKKAN 4-DIGIT PIN UNTUK DISARM"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPinDots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.3"
+                android:text="[ _ _ _ _ ]"
+                android:textColor="@color/cyan_accent"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPinErrorMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="PIN Default: 1234"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+
+            <!-- 3x4 PIN Keypad -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:columnCount="3"
+                android:rowCount="4">
+
+                <Button android:id="@+id/btnPin1" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="1" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin2" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="2" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin3" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="3" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin4" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="4" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin5" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="5" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin6" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="6" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin7" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="7" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin8" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="8" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin9" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="9" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPinClear" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="CLR" android:textColor="@color/alarm_crimson" android:textSize="13sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPin0" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="0" android:textColor="@color/text_primary" android:textSize="16sp" android:textStyle="bold" />
+                <Button android:id="@+id/btnPinBack" android:layout_width="0dp" android:layout_height="44dp" android:layout_columnWeight="1" android:layout_margin="3dp" android:background="@drawable/bg_keypad_button" android:text="⌫" android:textColor="@color/sentry_primary" android:textSize="16sp" android:textStyle="bold" />
+            </GridLayout>
+        </LinearLayout>
+
+        <!-- Real-Time Sensor Telemetry Card -->
+        <LinearLayout
+            android:id="@+id/cardLiveTelemetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_card_unselected"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LIVE TELEMETRI SENSOR FISIK"
+                android:textColor="@color/cyan_accent"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTelemetryXyz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="monospace"
+                android:text="Accel : X=+0.00  Y=+0.00  Z=+9.81 m/s²"
+                android:textColor="@color/text_primary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvTelemetryProxDelta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="monospace"
+                android:text="Prox  : 5.0 cm | Delta Gerak (Δa): 0.00 m/s²"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Interactive Hardware / Demo Simulator Card (For Lecturer Demo & Emulator Testing) -->
+        <LinearLayout
+            android:id="@+id/cardDemoSimulator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_unselected"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PANEL UJI INTERAKTIF / SIMULASI SENSOR (UTS DEMO)"
+                android:textColor="@color/text_secondary"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layoutFocusSimButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSimFaceDown"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_selected_focus"
+                    android:text="1. Telungkupkan HP"
+                    android:textAllCaps="false"
+                    android:textColor="@color/focus_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnSimLiftUp"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_card_selected_sentry"
+                    android:text="2. Angkat HP (Distraksi)"
+                    android:textAllCaps="false"
+                    android:textColor="@color/sentry_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnSimComplete"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_badge_pill"
+                    android:text="3. Selesai Cepat"
+                    android:textAllCaps="false"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSimSentryShake"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/alarm_crimson"
+                android:text="SIMULASI SENTUHAN / GERAKAN PENCURI (Δa = 4.2 m/s²)"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
